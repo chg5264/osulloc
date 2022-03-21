@@ -3,16 +3,14 @@ package org.osulloc.domain;
 import java.util.ArrayList;
 
 public class ProductDTO {
-	
-	
+
 	private String petc;
-	
+
 	private boolean image;
-	
+
 	private String uuid;
 	private String uploadpath;
 	private String filename;
-	
 	private int prodnum;
 	private String name;
 	private String kind;
@@ -22,10 +20,7 @@ public class ProductDTO {
 	private int price;
 	private int sale;
 	private String regdate;
-	
 	private int number;
-
-
 
 	public String getPetc() {
 		return petc;
@@ -146,8 +141,6 @@ public class ProductDTO {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -157,10 +150,4 @@ public class ProductDTO {
 				+ regdate + ", number=" + number + "]";
 	}
 
-	
-	
-	
-
-
-	
 }

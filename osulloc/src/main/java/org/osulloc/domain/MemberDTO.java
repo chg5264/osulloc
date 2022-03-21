@@ -1,30 +1,29 @@
 package org.osulloc.domain;
 
 public class MemberDTO {
-	
-	//  id
+
+	// id
 	private String id;
-	// passowrd 
+	// passowrd
 	private String password;
 	// name
 	private String name;
-	
-	// 생년월일 
-	
-	//년
+
+	// 생년월일
+
+	// 년
 	private String year;
-	//월
+	// 월
 	private String month;
-	 
-	//일
+
+	// 일
 	private String day;
-	
-	//성별 
+
+	// 성별
 	private String gender;
-	
-	//이메일
+
+	// 이메일
 	private String email;
-	
 
 	public String getId() {
 		return id;
@@ -90,13 +89,10 @@ public class MemberDTO {
 		this.email = email;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", password=" + password + ", name=" + name + ", year=" + year + ", month="
 				+ month + ", day=" + day + ", gender=" + gender + ", email=" + email + "]";
 	}
-	
+
 }
-	

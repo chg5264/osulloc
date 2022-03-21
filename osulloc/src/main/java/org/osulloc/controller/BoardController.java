@@ -25,90 +25,81 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BoardController {
 	@Autowired
 	private BoardService service;
-	
-	//글쓰기 화면으로
-	@GetMapping("write")
-	public void write() {}
 
-	
+	// 글쓰기 화면으로
+	@GetMapping("write")
+	public void write() {
+	}
+
 	@PostMapping("write")
 	public String writePost(BoardDTO board) {
 		System.out.println(board);
 		service.write(board);
-		
-		return "redirect:/page/detail?bno="+board.getBno();
+
+		return "redirect:/page/detail?bno=" + board.getBno();
 	}
-	
-	
-	
+
 	@GetMapping("noticeBoard")
 	public void noticeBoard(Model model, Criteria cri) {
-		
-		
+
 		model.addAttribute("list", service.noticeBoard(cri));
 
-		
 		int total = service.getTotalCount(cri);
 		model.addAttribute("pageMaker", new PageDTO(cri, service.getTotalCount(cri)));
 	}
 
-	
-	//게시판 목록 리스트에서 제목을 클릭하면
+	// 게시판 목록 리스트에서 제목을 클릭하면
 	@GetMapping("detail")
 	public void detail(BoardDTO board, Model model, PrevNextDTO pnBoard) {
-		model.addAttribute("detail", service.detail(board));		
+		model.addAttribute("detail", service.detail(board));
 		model.addAttribute("detail2", service.detail2(pnBoard));
-		
+
 	}
-	
-	//게시판 상세페이지에서 이미지를 출력하기 위한 select된 결과를 javascript로
-	@GetMapping(value="/fileList/{bno}",produces= MediaType.APPLICATION_JSON_UTF8_VALUE)//ajax
-	public ResponseEntity<ArrayList<AttachFileDTO>> fileList(@PathVariable int bno){
+
+	// 게시판 상세페이지에서 이미지를 출력하기 위한 select된 결과를 javascript로
+	@GetMapping(value = "/fileList/{bno}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE) // ajax
+	public ResponseEntity<ArrayList<AttachFileDTO>> fileList(@PathVariable int bno) {
 
 		System.out.println(service.fileList(bno));
-		
-		return new ResponseEntity<>(service.fileList(bno),HttpStatus.OK);
-		
+
+		return new ResponseEntity<>(service.fileList(bno), HttpStatus.OK);
+
 	}
-	
-	
-	//글 수정 화면으로
+
+	// 글 수정 화면으로
 	@GetMapping("modify")
 	public void modify(BoardDTO board, Model model) {
 
 		model.addAttribute("detail", service.detail(board));
 	}
-	
-	//글수정 버튼을 클릭하면
+
+	// 글수정 버튼을 클릭하면
 	@GetMapping("fileDelete")
 	public String fileDelete(AttachFileDTO attach, BoardDTO board) {
-		
+
 		service.fileDelete(attach);
 		System.out.println("boolean = " + service.fileDelete(attach));
-		
-		/*rttr.addAttribute("bno", board.getBno());*/
-		
-		return "redirect:/page/modify?bno="+board.getBno();
+
+		/* rttr.addAttribute("bno", board.getBno()); */
+
+		return "redirect:/page/modify?bno=" + board.getBno();
 	}
-	
+
 	@PostMapping("modify")
 	public String modifyPost(BoardDTO board) {
-		
+
 		service.modify(board);
-		
-		return "redirect:/page/detail?bno="+board.getBno();
-		
+
+		return "redirect:/page/detail?bno=" + board.getBno();
+
 	}
-	
-	//글삭제 버튼을 클릭하면
+
+	// 글삭제 버튼을 클릭하면
 	@GetMapping("remove")
 	public String remove(BoardDTO board) {
-		//delete
+		// delete
 		service.remove(board);
 		return "redirect:/page/noticeBoard";
 	}
 
-
-	
-	
 }
