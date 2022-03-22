@@ -42,7 +42,7 @@
 					<ul>
 						<li><a href="#">일구다<br>가꾸다
 						</a></li>
-						<li><a href="#">Since<br> 1978
+						<li><a href="#">Since<br> 1979
 						</a></li>
 						<li><a href="#">오설록<br> 차밭
 						</a></li>
